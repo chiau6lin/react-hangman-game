@@ -1,6 +1,14 @@
-export function WordGuess() {
-  const wordToGuess = "reactjs"
-  const guessedLetters = "js"
+type WordGuessProps = {
+  guessedLetters: string[]
+  wordToGuess: string
+  reveal?: boolean
+}
+
+export function WordGuess({
+  guessedLetters,
+  wordToGuess,
+  reveal = false,
+}: WordGuessProps) {
   return (
     <div
       style={{
@@ -17,11 +25,11 @@ export function WordGuess() {
           <span
             style={{
               visibility:
-                guessedLetters.includes(letter)
+                guessedLetters.includes(letter) || reveal
                   ? "visible"
                   : "hidden",
               color:
-                !guessedLetters.includes(letter)? "red" : "black",
+                !guessedLetters.includes(letter) && reveal ? "red" : "black",
             }}
           >
             {letter}
